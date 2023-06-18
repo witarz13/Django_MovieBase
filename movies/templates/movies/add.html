@@ -1,0 +1,7 @@
+<h1>add your movie</h1>
+<form action='/movies/add' method ='post'>
+{% csrf_token %}
+<input type = 'text' name='title' id ='title' placeholder="Enter moive" />
+<input type = 'text' name='year' id ='year' placeholder="Enter moive year" />
+<input type='submit' value="Ok">
+</form>

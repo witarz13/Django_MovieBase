@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Movie Table</title>
+</head>
+<body>
+    <h1>Moives</h1>
+    <table>
+        <tr>
+        <th>Movie</th>
+        <th>Year</th>
+        </tr>
+        {%for movie in movies %}
+        <tr>
+            <td><a href={{movie.id}}>{{movie.title}}</a></td>
+            <td>{{movie.year}}</td>
+        </tr> 
+        {% endfor %}
+    </table>
+    <a href='add'>add other movie</a>
+</body>
+</html>
