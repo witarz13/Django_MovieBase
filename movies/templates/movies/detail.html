@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <head>
+    head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>{{movies.title}}:detail</title>
+
+    
 </head>
-<h1>hello</h1>
-{{movies}}
-<br>
-<a href='/movies/delete/{{movies.id}}'>Delete</a>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="http://127.0.0.1:8000/movies/">Fake IMDB</a>
+      </div>
+    </div>
+</nav>
+<div class="container" style="padding-top: 70px">
+    <h1>{{movies.title}}</h1><br>
+    <h2>{{movies.year}}</h2>
+    <h3>{{movies.info}}</h3>
+    <br>
+    <a href='/movies/delete/{{movies.id}}'>Delete</a>
+    <a href="http://127.0.0.1:8000/movies/">Go to Home</a>
+</div>
+
 

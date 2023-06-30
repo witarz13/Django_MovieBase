@@ -23,5 +23,6 @@ urlpatterns = [
     path('movies/',view.movies),
     path('movies/<int:id>', view.detail),
     path('movies/add',view.add),
-    path('movies/delete/<int:id>',view.delete)
+    path('movies/delete/<int:id>',view.delete),
+    path('movies/database',view.database)
 ]

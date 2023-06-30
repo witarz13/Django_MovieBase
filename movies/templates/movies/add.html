@@ -1,7 +1,33 @@
-<h1>add your movie</h1>
-<form action='/movies/add' method ='post'>
-{% csrf_token %}
-<input type = 'text' name='title' id ='title' placeholder="Enter moive" />
-<input type = 'text' name='year' id ='year' placeholder="Enter moive year" />
-<input type='submit' value="Ok">
-</form>
+<!DOCTYPE html>
+<head>
+    head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Add New Movie</title>
+
+    
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://127.0.0.1:8000/movies/">Fake IMDB</a>
+        </div>
+        </div>
+    </nav>
+    <div class="container" style="padding-top: 70px">
+        <h1>add your movie</h1>
+        <form action='/movies/add' method ='post'>
+        {% csrf_token %}
+        <input type = 'text' name='title' id ='title' placeholder="Enter moive" /><br>
+        <input type = 'text' name='year' id ='year' placeholder="Enter moive year" /><br>
+        <input type = 'text' name='url' id ='url' placeholder="Enter a picture url" /><br>
+        <input type = 'text' name='info' id ='info' placeholder="Enter moive introduction" /><br>
+        <input type='submit' value="Ok">
+        </form>
+        <a href="http://127.0.0.1:8000/movies/">
+            <button type="button">Go to Home</button>
+        </a>
+    </div>
+</body>
