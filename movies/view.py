@@ -17,8 +17,9 @@ def add(request):
     year=request.POST.get('year')
     url=request.POST.get('url')
     info=request.POST.get('info')
+    rate=request.POST.get('rate')
     if title and year:
-        movie= Movie(title =title, year=year,url=url,info=info)
+        movie= Movie(title =title, year=year,url=url,info=info,rate_system=rate)
         movie.save()
         return HttpResponseRedirect('/movies')
     return render(request,'movies/add.html')
@@ -31,5 +32,13 @@ def delete(request,id):
 def database(request):
     data = Movie.objects.all()
     return render(request,'movies/dataList.html',{'movies':data})
+def filtered(request):
+     if request.method == 'POST':
+        movies_rate = request.POST.get('selected_option')
+        if movies_rate == 'clear':
+            data = Movie.objects.all()
+            return render(request,'movies/movies.html',{'movies':data})
+        data = Movie.objects.filter(rate_system=movies_rate)
+        return render(request,'movies/movies.html',{'movies':data})
 
 

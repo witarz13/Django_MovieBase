@@ -11,11 +11,19 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand">Fake IMDB</a>
+            <a class="active" href='database'><button>admin</button></a>
+            <a class="active" href='add'><button>add other movie</button></a>
           </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href='database'>admin</a></li>
-            <li class="active"><a href='add'>add other movie</a></li>
-          </ul>
+          <form method="POST" action="/movies/filterd">
+            {% csrf_token %}
+            <select class="form-select" aria-label="Select Option" name="selected_option" onchange="this.form.submit()">
+              <option selected>Select an option</option>
+              <option value="PG">PG</option>
+              <option value="PG-13">PG-13</option>
+              <option value="R">R</option>
+              <option value="clear">All</option>
+            </select>
+          </form>
         </div>
     </nav>
     <div class="container" style="padding-top: 70px">

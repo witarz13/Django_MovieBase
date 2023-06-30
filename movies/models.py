@@ -4,6 +4,6 @@ class Movie(models.Model):
     year=models.IntegerField()
     url=models.CharField(max_length=220,null=True)
     info=models.CharField(max_length=2200,null=True)
-    
+    rate_system=models.CharField(max_length=2200,null=True)
     def __str__(self):
         return f'{self.title}'
