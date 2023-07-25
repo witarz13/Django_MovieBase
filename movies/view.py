@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Movie
+from .models import UserTable
 from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login
 
 def movies(request):
     data = Movie.objects.all()
@@ -40,5 +42,31 @@ def filtered(request):
             return render(request,'movies/movies.html',{'movies':data})
         data = Movie.objects.filter(rate_system=movies_rate)
         return render(request,'movies/movies.html',{'movies':data})
+def login(request):
+    error_message = ''  # 错误消息
+    
+    if request.method == 'POST':
+        userName=request.POST.get('userName')
+        pwd=request.POST.get('pwd')
+        user = authenticate(username=userName, password=pwd)
+        print(pwd)
+        if user is not None:
+           
+            login(request, user)  # 执行登录操作
+            return HttpResponseRedirect('/movies')  # 重定向到主页或其他页面
+        else:
+            # 密码验证失败
+            error_message = 'Invalid username or password.'  # 错误消息
+            return render(request, 'movies/login.html', {'error_message': error_message})
+    return render(request,'movies/login.html')
+def sign(request):
+    userName=request.POST.get('userName')
+    pwd=request.POST.get('pwd')
+    if userName and pwd:
+        user = UserTable.objects.create_user(username=userName, password=pwd)
+        
+        user.save()
+        return HttpResponseRedirect('/movies/login')
+    return render(request,'movies/sign.html')
 
 

@@ -14,10 +14,14 @@
             <a class="active" href='database'><button>admin</button></a>
             <a class="active" href='add'><button>add other movie</button></a>
           </div>
+          <div >
+            <a href='login'><button class="btn btn-primary ml-auto">Log in</button></a>
+            <a href='sign'><button class="btn btn-primary ml-auto">Sign Up</button></a>
+          </div>
           <form method="POST" action="/movies/filterd">
             {% csrf_token %}
             <select class="form-select" aria-label="Select Option" name="selected_option" onchange="this.form.submit()">
-              <option selected>Select an option</option>
+              <option selected>Select the rate</option>
               <option value="PG">PG</option>
               <option value="PG-13">PG-13</option>
               <option value="R">R</option>
