@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<h1>hello</h1>
+<form action='/reverse' method ='post'>
+        {% csrf_token %}
+        <input type = 'text' name='title' id ='title' placeholder="Enter String" /><br>
+        <input type='submit' value="Ok">
+</form>
