@@ -23,14 +23,14 @@ def add(request):
     if title and year:
         movie= Movie(title =title, year=year,url=url,info=info,rate_system=rate)
         movie.save()
-        return HttpResponseRedirect('/movies')
+        return HttpResponseRedirect('')
     return render(request,'movies/add.html')
 def delete(request,id):
     try:
         Movie.objects.get(pk=id).delete()
     except:
         raise Http404('Movie not here')
-    return HttpResponseRedirect('/movies')
+    return HttpResponseRedirect('')
 def database(request):
     data = Movie.objects.all()
     return render(request,'movies/dataList.html',{'movies':data})
@@ -53,7 +53,7 @@ def login(request):
         if user is not None:
            
             login(request, user)  # 执行登录操作
-            return HttpResponseRedirect('/movies')  # 重定向到主页或其他页面
+            return HttpResponseRedirect('')  # 重定向到主页或其他页面
         else:
             # 密码验证失败
             error_message = 'Invalid username or password.'  # 错误消息

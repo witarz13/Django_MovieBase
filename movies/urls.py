@@ -20,12 +20,12 @@ from movies import view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movies/',view.movies),
-    path('movies/<int:id>', view.detail),
-    path('movies/add',view.add),
-    path('movies/delete/<int:id>',view.delete),
-    path('movies/database',view.database),
-    path('movies/filterd',view.filtered),
-    path('movies/sign',view.sign),
-    path('movies/login',view.login)
+    path('',view.movies),
+    path('<int:id>', view.detail),
+    path('add',view.add),
+    path('delete/<int:id>',view.delete),
+    path('database',view.database),
+    path('filterd',view.filtered),
+    path('sign',view.sign),
+    path('login',view.login)
 ]
