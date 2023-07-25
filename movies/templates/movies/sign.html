@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <title>Log in</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://127.0.0.1:8000/movies/">Fake IMDB</a>
+            </div>
+            </div>
+        </nav>
+        <div class="container text-center" style="padding-top: 70px">
+            <h1>User Login</h1>
+            <form action='/movies/sign' method ='post'>
+            {% csrf_token %}
+            <input type = 'text' name='userName' id ='userName' placeholder="Enter your UserName" 
+            onblur="userNameValidation()" /><br>
+            <a id="userNameMessage"></a><br>
+            <input type = 'password' name='pwd' id ='pwd' placeholder="Enter your password"
+            onblur="pwdValidation()" /><br>
+            <a id="pwdMessage"></a><br>
+            <input type = 'password' name='rpwd' id ='rpwd' placeholder="pleas re-enter your password"
+            onblur="rpwdValidation()" /><br>
+            <a id="rpwdMessage"></a><br>
+            <input type='submit' id="submitBtn" value="Ok" disabled>
+            </form>
+            <a href="http://127.0.0.1:8000/movies/">
+                <button type="button">Go to Home</button>
+            </a>
+        </div>
+        <script>
+            let nameV=false;
+            let pwdV=false;
+            let rpwdV=false;
+            function userNameValidation(){
+                let userName=document.getElementById('userName').value;
+                nameV=false;
+                if(userName.length <6){
+                document.getElementById('userNameMessage').innerHTML="UserName must more than 6 char";
+                document.getElementById('userNameMessage').style.color='red';
+                }
+                else if(userName.length>24){
+                document.getElementById('userNameMessage').innerHTML="UserName must less than 24 char";
+                document.getElementById('userNameMessage').style.color='red';
+                }
+                else{
+                    document.getElementById('userNameMessage').innerHTML="";
+                    nameV=true;
+
+                }    
+            }
+            function pwdValidation(){
+                let pwd=document.getElementById('pwd').value;
+                var regex = /\d/;
+                pwdV=false;
+                if(pwd.length <6){
+                document.getElementById('pwdMessage').innerHTML="Password must more than 6 char";
+                document.getElementById('pwdMessage').style.color='red';
+                }
+                else if(pwd.length>24){
+                document.getElementById('pwdMessage').innerHTML="Password must less than 24 char";
+                document.getElementById('pwdMessage').style.color='red';
+                }
+                else if(!(regex.test(pwd))){
+                document.getElementById('pwdMessage').innerHTML="Password must contain at least 1 number";
+                document.getElementById('pwdMessage').style.color='red';
+                }
+                else{
+                    document.getElementById('pwdMessage').innerHTML="";
+                    pwdV=true;
+
+                }    
+            }
+            function rpwdValidation(){
+                let pwd=document.getElementById('pwd').value;
+                let rpwd=document.getElementById('rpwd').value;
+                
+                if(pwd===rpwd && pwdV == true){
+                    document.getElementById('rpwdMessage').innerHTML="The passwrod ok";
+                    document.getElementById('rpwdMessage').style.color='green';
+                    if(nameV==true){
+                        console.log("posswardOK");
+                        document.getElementById('submitBtn').removeAttribute("disabled");
+                    }
+
+                }
+                else{
+                    console.log("equal");
+                    document.getElementById('rpwdMessage').innerHTML="The passwrod not match";
+                    document.getElementById('rpwdMessage').style.color='red';
+
+                }
+                
+            }
+            
+            
+        </script>
+
+    </body>
+</html>
